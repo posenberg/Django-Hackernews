@@ -1,0 +1,29 @@
+{% load staticfiles %}
+{% load url from future %}
+
+
+<html>
+	<head><title>Tuts+ News</title>
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/master.css">
+	{% block head %}
+	{% endblock head %}
+	</head>
+	<body>
+		<div id="content">
+			<div id="header">
+				<div id="site-logo">M</div>
+				{% if user.is_authenticated %}
+				<!-- check it out, the url 'story' is based of the name given in urls.py-->
+					<div id="user-info" >{{	user.username }} | <a href='{% url 'story'}'>submit</a> | <a href='/logout'>logout</a></div>
+				{% else %}
+					<div id="user-info"><a href="/login/">Login</a></div>
+				{% endif %}
+				<div id="site-title"><h1>Tuts+ News</h1></div>
+		</div>		
+
+		{% block content %}
+		{% endblock content %}
+		</div>
+
+	</body>
+</html>
